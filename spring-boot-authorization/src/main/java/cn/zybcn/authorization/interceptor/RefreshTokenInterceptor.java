@@ -29,7 +29,7 @@ public class RefreshTokenInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         // 1.获取请求头中的token
-        String token = request.getHeader("authorization");
+        String token = request.getHeader(Constants.AUTHORIZATION);
         if (StringUtils.isBlank(token)) {
             return true;
         }
