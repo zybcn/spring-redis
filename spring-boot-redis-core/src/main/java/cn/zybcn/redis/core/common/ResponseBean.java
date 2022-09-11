@@ -4,7 +4,7 @@ package cn.zybcn.redis.core.common;
  * @Author 程序员小张
  * @Date 2022-09-10 12:15
  */
-public class ResponseBean {
+public class ResponseBean<T> {
 
     /**
      * HTTP状态码
@@ -19,9 +19,9 @@ public class ResponseBean {
     /**
      * 返回的数据
      */
-    private Object data;
+    private T data;
 
-    public ResponseBean(int code, String msg, Object data) {
+    public ResponseBean(Integer code, String msg, T data) {
         this.code = code;
         this.msg = msg;
         this.data = data;
@@ -43,11 +43,11 @@ public class ResponseBean {
         this.msg = msg;
     }
 
-    public Object getData() {
+    public T getData() {
         return data;
     }
 
-    public void setData(Object data) {
+    public void setData(T data) {
         this.data = data;
     }
 }
