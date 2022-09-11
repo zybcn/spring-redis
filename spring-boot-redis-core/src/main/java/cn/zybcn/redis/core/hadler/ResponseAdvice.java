@@ -28,7 +28,6 @@ public class ResponseAdvice implements ResponseBodyAdvice<Object> {
 
     @Autowired
     private RouterConfig routerConfig;
-
     @Resource
     private HttpServletRequest request;
 
@@ -57,7 +56,7 @@ public class ResponseAdvice implements ResponseBodyAdvice<Object> {
         if (body instanceof ResponseBean) {
             return body;
         } else {
-            return new ResponseBean(HttpStatus.OK.value(), "操作成功", body);
+            return new ResponseBean<>(HttpStatus.OK.value(), "操作成功", body);
         }
     }
 }

@@ -1,7 +1,7 @@
-package cn.zybcn.redis.core.config;
+package cn.zybcn.authorization.config;
 
-import cn.zybcn.redis.core.interceptor.LoginInterceptor;
-import cn.zybcn.redis.core.interceptor.RefreshTokenInterceptor;
+import cn.zybcn.authorization.interceptor.LoginInterceptor;
+import cn.zybcn.authorization.interceptor.RefreshTokenInterceptor;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;

@@ -1,9 +1,9 @@
-package cn.zybcn.redis.core.interceptor;
+package cn.zybcn.authorization.interceptor;
 
 import cn.hutool.core.bean.BeanUtil;
-import cn.zybcn.redis.core.consts.RedisConstants;
-import cn.zybcn.redis.core.dto.UserDTO;
-import cn.zybcn.redis.core.utils.UserHolder;
+import cn.zybcn.authorization.config.Constants;
+import cn.zybcn.authorization.dto.UserDTO;
+import cn.zybcn.authorization.utils.UserHolder;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.web.servlet.HandlerInterceptor;
@@ -34,7 +34,7 @@ public class RefreshTokenInterceptor implements HandlerInterceptor {
             return true;
         }
         // 2.基于TOKEN获取redis中的用户
-        String key = RedisConstants.LOGIN_USER_KEY + token;
+        String key = Constants.LOGIN_USER_KEY + token;
         Map<Object, Object> userMap = stringRedisTemplate.opsForHash().entries(key);
         // 3.判断用户是否存在
         if (userMap.isEmpty()) {
@@ -45,7 +45,7 @@ public class RefreshTokenInterceptor implements HandlerInterceptor {
         // 6.存在，保存用户信息到 ThreadLocal
         UserHolder.saveUser(userDTO);
         // 7.刷新token有效期
-        stringRedisTemplate.expire(key, RedisConstants.LOGIN_USER_TTL, TimeUnit.MINUTES);
+        stringRedisTemplate.expire(key, Constants.LOGIN_USER_TTL, TimeUnit.HOURS);
         // 8.放行
         return true;
     }

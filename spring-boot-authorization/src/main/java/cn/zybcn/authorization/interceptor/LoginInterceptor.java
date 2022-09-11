@@ -1,6 +1,6 @@
-package cn.zybcn.redis.core.interceptor;
+package cn.zybcn.authorization.interceptor;
 
-import cn.zybcn.redis.core.utils.UserHolder;
+import cn.zybcn.authorization.utils.UserHolder;
 import org.springframework.web.servlet.HandlerInterceptor;
 
 import javax.servlet.http.HttpServletRequest;
