@@ -1,7 +1,6 @@
 package cn.zybcn.authorization.manager.impl;
 
 import cn.zybcn.authorization.config.Constants;
-import cn.zybcn.authorization.dto.UserDTO;
 import cn.zybcn.authorization.manager.TokenManager;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,7 +36,7 @@ public class RedisTokenManager implements TokenManager {
         //存储到redis并设置过期时间
         Map<String, Object> userMap = new HashMap<>();
         userMap.put("userId", userId);
-        redis.opsForHash().putAll(token, userMap);
+        redis.opsForHash().putAll(Constants.LOGIN_USER_KEY+token, userMap);
         redis.boundValueOps(userId).set(token, Constants.TOKEN_EXPIRES_HOUR, TimeUnit.HOURS);
         return token;
     }
@@ -56,6 +55,7 @@ public class RedisTokenManager implements TokenManager {
 
     @Override
     public boolean checkToken(String token) {
+
         if (token == null) {
             return false;
         }
